@@ -1,5 +1,6 @@
 package com.example.mangodbcookiememorycache.domain.entity;
 
+import lombok.Builder;
 import lombok.Data;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -9,6 +10,7 @@ import java.util.List;
 
 @Document(collection = "posts")
 @Data
+@Builder
 public class Post {
     @Id
     private String id;
