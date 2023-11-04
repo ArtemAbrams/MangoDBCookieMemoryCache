@@ -21,10 +21,10 @@ public class PostMapper {
         return PostDTO.builder()
                 .title(post.getTitle())
                 .content(post.getContent())
-                .comments(post.getComments()
+                .comments(post.getComments() != null ? post.getComments()
                         .stream()
                         .map(CommentMapper::entityToDTO)
-                        .toList())
+                        .toList() : null)
                 .build();
     }
 }

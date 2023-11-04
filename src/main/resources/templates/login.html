@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <style>
+    /* ... (include your styles here or link to a CSS file) ... */
+    /* Example of some styles */
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f7f6;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .login-container {
+      background-color: #ffffff;
+      padding: 40px 60px;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 24px;
+      color: #333;
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+
+    input {
+      font-size: 16px;
+      padding: 15px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 15px;
+      font-size: 16px;
+      background-color: #5cb85c;
+      color: #ffffff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    button:hover {
+      background-color: #4cae4c;
+    }
+
+    .error-message {
+      color: #d9534f;
+      text-align: center;
+      margin-bottom: 15px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="login-container">
+  <h2>Login to Your Account</h2>
+
+  <div th:if="${error}" class="error-message">
+    <p>Invalid email or password!</p>
+  </div>
+
+  <form th:action="@{/mvc_user/login/submit}" method="post">
+    <input type="email" name="email" th:value="${email_todolist}" placeholder="Email" required>
+    <input type="password" name="password" th:value="${password_todolist}" placeholder="Password" required>
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+</body>
+</html>

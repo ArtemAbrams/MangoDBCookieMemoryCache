@@ -1,4 +1,4 @@
-package com.example.mangodbcookiememorycache.controller;
+package com.example.mangodbcookiememorycache.controller.RestController;
 
 import com.example.mangodbcookiememorycache.domain.data.UserData;
 import com.example.mangodbcookiememorycache.domain.dto.ResponseDTO;

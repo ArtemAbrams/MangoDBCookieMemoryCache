@@ -16,6 +16,7 @@ public class UserMapper {
                         .stream()
                         .map(PostMapper::dataToEntity)
                         .toList())
+                .password(userData.getPassword())
                 .build();
     }
     public UserDTO entityToDTO(User user){
@@ -23,10 +24,11 @@ public class UserMapper {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
-                .posts(user.getPosts()
+                .posts(user.getPosts() != null ? user.getPosts()
                         .stream()
                         .map(PostMapper::entityToDTO)
-                        .toList())
+                        .toList() : null)
+                .password(user.getPassword())
                 .build();
     }
 }
