@@ -12,10 +12,6 @@ public class UserMapper {
                 .firstName(userData.getFirstName())
                 .lastName(userData.getLastName())
                 .email(userData.getEmail())
-                .posts(userData.getPosts()
-                        .stream()
-                        .map(PostMapper::dataToEntity)
-                        .toList())
                 .password(userData.getPassword())
                 .build();
     }
@@ -24,10 +20,6 @@ public class UserMapper {
                 .firstName(user.getFirstName())
                 .lastName(user.getLastName())
                 .email(user.getEmail())
-                .posts(user.getPosts() != null ? user.getPosts()
-                        .stream()
-                        .map(PostMapper::entityToDTO)
-                        .toList() : null)
                 .password(user.getPassword())
                 .build();
     }

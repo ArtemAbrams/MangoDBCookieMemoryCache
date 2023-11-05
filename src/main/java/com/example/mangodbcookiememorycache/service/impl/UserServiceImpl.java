@@ -10,6 +10,7 @@ import com.example.mangodbcookiememorycache.mapper.UserMapper;
 import com.example.mangodbcookiememorycache.repository.UserRepository;
 import com.example.mangodbcookiememorycache.service.UserService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -17,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.naming.AuthenticationException;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -24,9 +26,10 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
+    private final static String CACHE_NAME = "user";
     @Override
     @Transactional
-    public User registerNewUserAccount(UserData userData) {
+    public UserDTO registerNewUserAccount(UserData userData) {
         if (emailExist(userData.getEmail())) {
             throw new UserAlreadyExistsException("There is an account with that email address: " + userData.getEmail());
         }
@@ -39,7 +42,8 @@ public class UserServiceImpl implements UserService {
                 .id(UUID.randomUUID()
                         .toString())
                 .build();
-        return userRepository.save(user);
+        return UserMapper.entityToDTO(
+                userRepository.save(user));
     }
 
     @Override
@@ -57,6 +61,7 @@ public class UserServiceImpl implements UserService {
         SecurityContextHolder.getContext().setAuthentication(authentication);
         return UserMapper.entityToDTO(user);
     }
+
     private boolean emailExist(String email) {
         return userRepository.findUserByEmail(email)
                 .isPresent();

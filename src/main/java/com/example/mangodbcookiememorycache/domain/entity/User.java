@@ -21,7 +21,5 @@ public class User {
     private String lastName;
     private String password;
     @DBRef
-    private List<Post> posts;
-    @DBRef
     private List<ToDoTask> tasks;
 }

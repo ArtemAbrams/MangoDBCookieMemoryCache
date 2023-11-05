@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            width: 90%;
+            margin: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        button {
+            padding: 5px 10px;
+            margin: 0 5px;
+        }
+        .btn-update {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+        .btn-delete {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>All Users</h1>
+    <table>
+        <thead>
+        <tr>
+            <th>Email</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Posts</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- Loop through all users -->
+        <tr th:each="user : ${users}">
+            <td th:text="${user.email}">Email</td>
+            <td th:text="${user.firstName}">First Name</td>
+            <td th:text="${user.lastName}">Last Name</td>
+            <td>
+                <ul>
+                    <!-- Loop through all posts of the current user -->
+                    <li th:each="post : ${user.posts}" th:text="${post.title}">Post Title</li>
+                </ul>
+            </td>
+            <td>
+                <button th:attr="onclick=|window.location.href='/updateUser?email=' + ${user.email}|"
+                        class="btn-update">Update</button>
+
+                <button th:attr="onclick=|window.location.href='/deleteUser?email=' + ${user.email}|"
+                        class="btn-delete">Delete</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+</body>
+</html>

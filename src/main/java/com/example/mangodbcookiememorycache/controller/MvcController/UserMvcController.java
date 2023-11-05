@@ -1,22 +1,21 @@
 package com.example.mangodbcookiememorycache.controller.MvcController;
 
 
-import com.example.mangodbcookiememorycache.domain.data.LoginData;
 import com.example.mangodbcookiememorycache.domain.data.UserData;
+import com.example.mangodbcookiememorycache.mapper.UserMapper;
 import com.example.mangodbcookiememorycache.service.impl.CookieServiceImpl;
 import com.example.mangodbcookiememorycache.service.impl.UserServiceImpl;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.tomcat.util.buf.Utf8Encoder;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import java.util.Base64;
+import java.util.UUID;
 
 @Slf4j
 @Controller
@@ -32,9 +31,10 @@ public class UserMvcController {
         return "registration";
     }
     @PostMapping("/registration")
+
     public String registration(@ModelAttribute("userData") UserData userData, RedirectAttributes redirectAttributes){
         try {
-            userService.registerNewUserAccount(userData);
+            var userDTO = userService.registerNewUserAccount(userData);
             redirectAttributes.addFlashAttribute("success", true);
             return "redirect:/mvc_user/login";
         } catch (Exception exception) {

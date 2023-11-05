@@ -1,11 +1,9 @@
 package com.example.mangodbcookiememorycache.domain.data;
 
-import com.example.mangodbcookiememorycache.domain.entity.Post;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.Data;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.List;
 
@@ -26,5 +24,4 @@ public class UserData {
     @Size(min = 8, message = "Password must be at least 8 characters long")
     private String password;
 
-    private List<PostData> posts;
 }
