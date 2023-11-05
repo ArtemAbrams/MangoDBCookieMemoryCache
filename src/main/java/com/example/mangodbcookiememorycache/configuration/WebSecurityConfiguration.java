@@ -17,7 +17,8 @@ public class WebSecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(e ->
                         e.requestMatchers("/mvc_user/**",
-                                        "/todo/**")
+                                        "/todo/**,",
+                                                "/product/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()

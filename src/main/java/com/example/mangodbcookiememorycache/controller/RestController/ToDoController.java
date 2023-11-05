@@ -1,4 +1,4 @@
-package com.example.mangodbcookiememorycache.controller.MvcController;
+package com.example.mangodbcookiememorycache.controller.RestController;
 
 import com.example.mangodbcookiememorycache.domain.data.ToDoTaskData;
 import com.example.mangodbcookiememorycache.mapper.ToDoTaskMapper;
