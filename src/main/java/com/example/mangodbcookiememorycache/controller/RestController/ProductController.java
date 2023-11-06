@@ -1,5 +1,6 @@
 package com.example.mangodbcookiememorycache.controller.RestController;
 
+import com.example.mangodbcookiememorycache.domain.data.ProductCountryData;
 import com.example.mangodbcookiememorycache.domain.data.ProductData;
 import com.example.mangodbcookiememorycache.mapper.ProductMapper;
 import com.example.mangodbcookiememorycache.repository.ProductRepository;
@@ -97,6 +98,21 @@ public class ProductController {
             return ResponseEntity.status(HttpStatus.OK)
                     .body(ProductMapper
                             .entityToDTO(product));
+        }
+        catch (Exception exception){
+            log.error(exception.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
+                    .body(exception.getMessage());
+        }
+    }
+    @PostMapping("/create_2")
+    @Transactional
+    public ResponseEntity<?> update(@RequestBody ProductCountryData productCountryData) {
+        try {
+           productRepository.save(ProductMapper
+                   .dataToEntity(productCountryData));
+           return ResponseEntity.status(HttpStatus.OK)
+                   .build();
         }
         catch (Exception exception){
             log.error(exception.getMessage());

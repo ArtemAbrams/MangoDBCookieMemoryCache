@@ -18,7 +18,8 @@ public class WebSecurityConfiguration {
                 .authorizeHttpRequests(e ->
                         e.requestMatchers("/mvc_user/**",
                                         "/todo/**,",
-                                                "/product/**")
+                                        "/product/**",
+                                        "/query/**")
                                 .permitAll()
                                 .anyRequest()
                                 .authenticated()

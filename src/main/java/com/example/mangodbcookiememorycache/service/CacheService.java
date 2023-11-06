@@ -1,6 +1,5 @@
 package com.example.mangodbcookiememorycache.service;
 
-import org.springframework.stereotype.Service;
 
 import java.util.List;
 

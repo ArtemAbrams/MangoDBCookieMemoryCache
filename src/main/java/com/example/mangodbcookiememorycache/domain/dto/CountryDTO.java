@@ -2,16 +2,11 @@ package com.example.mangodbcookiememorycache.domain.dto;
 
 import lombok.*;
 
-import java.util.List;
-
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductDTO {
+public class CountryDTO {
     private String name;
-    private double price;
-    List<CountryDTO> countryDTOS;
-
 }

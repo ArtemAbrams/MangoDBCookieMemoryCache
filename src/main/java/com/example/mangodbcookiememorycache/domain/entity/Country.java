@@ -1,20 +1,24 @@
 package com.example.mangodbcookiememorycache.domain.entity;
 
-import lombok.Builder;
-import lombok.Data;
+import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 
-@Data
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @Document
 @Builder
-public class Product {
+public class Country {
     @Id
     private String name;
-    private double price;
     @DBRef
-    private List<Country> countries;
+    private Product product;
+    public Country(String name){
+        this.name=name;
+    }
 }
